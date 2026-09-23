@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="社媒坟场：个人社交媒体内容备份工具集合。让消失的平台、封存的账号和旧内容，留下可以自己保存的副本。">
+<title>社媒坟场 · Social Media Graveyard</title>
+<style>
+:root{--bg:#0b0b0b;--card:#111;--line:#292929;--muted:#929292;--text:#f2f2ee;--acid:#d9ff57;--soft:#171717}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+a{color:inherit}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-size:13px}
+.brand{font-weight:800;letter-spacing:.08em}.navmeta{color:var(--muted)}
+.hero{padding:110px 0 82px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.kicker{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--acid);letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:clamp(58px,11vw,154px);line-height:.87;margin:18px 0 26px;letter-spacing:-.075em;font-weight:900}
+.hero p{max-width:660px;color:#b9b9b4;font-size:18px;line-height:1.75;margin:0}
+.counter{margin-top:48px;display:flex;gap:28px;align-items:end}.big{font-size:48px;font-weight:800;line-height:1}.counter small{color:var(--muted)}
+.grid-head{padding:54px 0 22px;display:flex;justify-content:space-between;align-items:end;gap:20px}.grid-head h2{font-size:20px;margin:0}.filters{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit}.filter{border:1px solid var(--line);background:transparent;color:#aaa;border-radius:999px;padding:9px 14px;cursor:pointer}.filter.active{background:var(--text);color:#111;border-color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding-bottom:90px}
+.card{min-height:330px;border:1px solid var(--line);background:var(--card);padding:28px;display:flex;flex-direction:column;position:relative;transition:.2s ease}
+.card:hover{border-color:#555;transform:translateY(-2px)}.card.hidden{display:none}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.num{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#686868}
+.icon{width:54px;height:54px;border:1px solid #333;border-radius:16px;display:grid;place-items:center;font-size:23px;font-weight:800}
+.status{display:inline-flex;align-items:center;gap:7px;color:#aaa;font-size:12px;margin:25px 0 12px}.dot{width:7px;height:7px;border-radius:50%;background:#777}.status.live .dot{background:var(--acid);box-shadow:0 0 0 4px rgba(217,255,87,.08)}
+.card h3{font-size:33px;letter-spacing:-.03em;margin:0 0 10px}.desc{color:#999;line-height:1.65;margin:0;max-width:510px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:24px}.tag{border:1px solid #292929;padding:7px 9px;border-radius:6px;color:#858585;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}
+.card-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #252525;margin-top:22px;padding-top:18px;color:#aaa;font-size:13px}
+.card-foot a{text-decoration:none}.card-foot a:hover{color:var(--acid)}.muted-link{color:#5d5d5d}
+.manifesto{border-top:1px solid var(--line);padding:90px 0;display:grid;grid-template-columns:1fr 1.2fr;gap:60px}.manifesto h2{font-size:42px;line-height:1.06;letter-spacing:-.04em;margin:0}.manifesto p{color:#aaa;line-height:1.8;margin:0 0 16px}
+.footer{border-top:1px solid var(--line);padding:30px 0 50px;display:flex;justify-content:space-between;color:#646464;font-size:12px}
+@media(max-width:720px){.wrap{width:min(100% - 28px,1180px)}nav{height:62px}.hero{padding:78px 0 60px}h1{font-size:18vw}.grid{grid-template-columns:1fr}.grid-head{align-items:flex-start;flex-direction:column}.manifesto{grid-template-columns:1fr;gap:28px;padding:64px 0}.manifesto h2{font-size:34px}.counter{margin-top:36px}.card{min-height:300px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="brand">社媒坟场</div><div class="navmeta">SOCIAL MEDIA GRAVEYARD / 2026</div></nav>
+<section class="hero">
+<div class="kicker">Local-first · Personal archive · Browser extensions</div>
+<h1>社媒<br>坟场</h1>
+<p>账号会被封，平台会消失，链接会失效。这里收集一组面向个人账号的社交媒体备份工具，把属于自己的内容，保存成属于自己的档案。</p>
+<div class="counter"><div class="big">04</div><small>个平台已纳入备份计划<br>持续增加中</small></div>
+</section>
+<section>
+<div class="grid-head"><h2>墓园索引 / PROJECT INDEX</h2><div class="filters">
+<button class="filter active" data-filter="all">全部 4</button>
+<button class="filter" data-filter="connected">已接入仓库</button>
+<button class="filter" data-filter="building">进行中</button>
+</div></div>
+<div class="grid" id="grid">
+<article class="card" data-state="building"><div class="card-top"><div class="icon">𝕏</div><span class="num">01 / 04</span></div><div class="status live"><span class="dot"></span>项目已启动</div><h3>X 主页备份</h3><p class="desc">为自己的 X 账号建立本地副本。目标是保存主页时间线、文字、图片与视频，并保留可浏览的内容结构。</p><div class="tags"><span class="tag">X / Twitter</span><span class="tag">Profile archive</span><span class="tag">Local-first</span></div><div class="card-foot"><span>仓库尚未接入本页</span><span class="muted-link">IN PROGRESS ↗</span></div></article>
+<article class="card" data-state="connected"><div class="card-top"><div class="icon">@</div><span class="num">02 / 04</span></div><div class="status live"><span class="dot"></span>仓库已接入</div><h3>Threads 备份</h3><p class="desc">Local-first Threads 备份浏览器扩展与归档网站。尽量让帖子与媒体文件脱离平台后仍可被浏览和保存。</p><div class="tags"><span class="tag">Threads</span><span class="tag">Browser extension</span><span class="tag">Archive site</span></div><div class="card-foot"><span>Private repository</span><a href="https://github.com/711stoner/threads-backup" rel="noreferrer">GitHub ↗</a></div></article>
+<article class="card" data-state="building"><div class="card-top"><div class="icon">微</div><span class="num">03 / 04</span></div><div class="status live"><span class="dot"></span>项目进行中</div><h3>微博备份</h3><p class="desc">面向个人微博主页的备份工具计划。核心仍然是：自己的账号、自己的内容、自己的长期副本。</p><div class="tags"><span class="tag">Weibo</span><span class="tag">Personal archive</span><span class="tag">Media backup</span></div><div class="card-foot"><span>待接入独立仓库</span><span class="muted-link">BUILDING ↗</span></div></article>
+<article class="card" data-state="building"><div class="card-top"><div class="icon">豆</div><span class="num">04 / 04</span></div><div class="status live"><span class="dot"></span>项目进行中</div><h3>豆瓣备份</h3><p class="desc">用于整理和保存个人豆瓣内容的备份插件计划，让多年积累的公开表达不只存在于一个平台里。</p><div class="tags"><span class="tag">Douban</span><span class="tag">Personal archive</span><span class="tag">Long-term</span></div><div class="card-foot"><span>待接入独立仓库</span><span class="muted-link">BUILDING ↗</span></div></article>
+</div>
+</section>
+<section class="manifesto"><h2>平台不是<br>你的硬盘。</h2><div><p>社交媒体天然是短暂的：产品会改版、API 会关闭、账号会异常、内容会下架。真正长期的东西，应该有一份能被自己控制的副本。</p><p>“社媒坟场”不是一个社交平台，而是这些个人备份工具的集合入口。每增加一个平台，就多留下一块可以迁移、检索、继续保存的数字遗址。</p></div></section>
+<footer class="footer"><span>© 2026 社媒坟场</span><span>Built for personal archives.</span></footer>
+</div>
+<script>
+const buttons=[...document.querySelectorAll('.filter')],cards=[...document.querySelectorAll('.card')];
+buttons.forEach(btn=>btn.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;cards.forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.state!==f));}));
+</script>
+</body></html>
