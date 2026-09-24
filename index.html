@@ -1,8 +1,11 @@
 <!doctype html>
 <html lang="zh-CN"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="社媒坟场：保存自己的社交账号，也可以为停更或准备注销的账号留下一块墓碑。">
-<title>社媒坟场</title>
+<meta name="description" content="社媒坟场：X、Threads、微博、小红书、知乎、豆瓣个人账号备份工具集合，支持本地归档、HTML/PDF/JSON 导出，并可自愿生成社媒墓碑。">
+<meta property="og:title" content="社媒坟场｜社交媒体备份与社媒墓碑">
+<meta property="og:description" content="备份自己的 X、Threads、微博、小红书、知乎与豆瓣内容，默认本地保存；也可以自愿为停更或注销账号留一块墓碑。">
+<meta property="og:type" content="website">
+<title>社媒坟场｜X、Threads、微博、小红书、知乎、豆瓣备份与社媒墓碑</title>
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:#111;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",Arial,sans-serif;font-size:15px;line-height:1.65}a{color:#111}.page{width:min(920px,calc(100% - 40px));margin:auto}
 header{height:72px;display:flex;align-items:center;border-bottom:1px solid #ddd}.name{font-weight:600}.nav{margin-left:auto;display:flex;gap:24px;font-size:13px}.nav a{text-decoration:none;color:#555}
@@ -22,21 +25,22 @@ footer{padding:30px 0 50px;color:#999;font-size:11px;display:flex;justify-conten
 
 <section id="graves"><div class="head"><h2>墓园</h2><p>公开墓碑 0</p></div><div class="empty"><div class="mark">🪦</div><b>这里还没有墓碑。</b><span>第一块真实墓碑将从 №000001 开始。</span></div></section>
 
-<section id="create"><div class="head"><h2>立碑</h2><p>目前只为自己的账号立碑</p></div><div class="create"><form class="form" onsubmit="return false"><div class="row"><div class="field"><label>平台</label><select id="platform"><option>X / Twitter</option><option>Threads</option><option>微博</option><option>豆瓣</option><option>知乎</option><option>小红书</option><option>其他</option></select></div><div class="field"><label>账号名</label><input id="username" placeholder="@username"></div></div><div class="row"><div class="field"><label>昵称</label><input id="displayName" placeholder="昵称"></div><div class="field"><label>头像地址</label><input id="avatarUrl" placeholder="https://"></div></div><div class="row"><div class="field"><label>开始时间</label><input id="startDate" type="month"></div><div class="field"><label>状态</label><select id="graveStatus"><option>准备注销</option><option>已经注销</option><option>停止更新</option><option>仅作存档</option></select></div></div><div class="field"><label>墓志铭（可不写）</label><textarea id="epitaph"></textarea></div><button class="button" id="previewBtn">更新预览</button><div class="note">这里只生成本地预览，不会上传。公开前会再次确认。</div></form><div class="preview"><div class="avatar" id="pvAvatar">○</div><h3 id="pvName">昵称</h3><div class="handle" id="pvHandle">@username · X / Twitter</div><div class="dates" id="pvDates">—</div><div class="state" id="pvStatus">准备注销</div><div class="epitaph" id="pvEpitaph"></div><div class="grave-no">墓碑 № —</div></div></div></section>
+<section id="create"><div class="head"><h2>立碑</h2><p>目前只为自己的账号立碑</p></div><div class="create"><form class="form" onsubmit="return false"><div class="row"><div class="field"><label>平台</label><select id="platform"><option>X / Twitter</option><option>Threads</option><option>微博</option><option>豆瓣</option><option>知乎</option><option>小红书</option><option>其他</option></select></div><div class="field"><label>账号名</label><input id="username" placeholder="@username"></div></div><div class="row"><div class="field"><label>昵称</label><input id="displayName" placeholder="昵称"></div><div class="field"><label>头像地址</label><input id="avatarUrl" placeholder="https://"></div></div><div class="row"><div class="field"><label>开始时间</label><input id="startDate" type="month"></div><div class="field"><label>状态</label><select id="graveStatus"><option>准备注销</option><option>已经注销</option><option>停止更新</option><option>仅作存档</option></select></div></div><div class="field"><label>墓志铭（可不写）</label><textarea id="epitaph"></textarea></div><button class="button" id="previewBtn">更新预览</button><div class="note" id="pluginImportNote">这里只生成本地预览，不会上传。公开前会再次确认。</div></form><div class="preview"><div class="avatar" id="pvAvatar">○</div><h3 id="pvName">昵称</h3><div class="handle" id="pvHandle">@username · X / Twitter</div><div class="dates" id="pvDates">—</div><div class="state" id="pvStatus">准备注销</div><div class="epitaph" id="pvEpitaph"></div><div class="grave-no">墓碑 № —</div></div></div></section>
 
 <section><div class="head"><h2>纪念</h2><p>不做点赞，不做排行榜</p></div><div class="memorial"><p>墓碑公开后，其他人可以来献一束花或点一支蜡烛。它们只是纪念，不用于计算账号价值、推荐排序或热度。</p><ul><li>🌹 献花</li><li>🕯 点蜡烛</li><li>留言（后续）</li><li>墓碑可由创建者撤下</li></ul></div></section>
 
 <section id="tools"><div class="head"><h2>备份插件</h2><p>完整备份默认只留在本地</p></div><div class="tools">
-<div class="tool"><span class="num">01</span><h3>X</h3><p>主页、文字、图片与视频。</p><span class="status">开发中</span></div>
-<div class="tool"><span class="num">02</span><h3>Threads</h3><p>帖子与媒体内容。</p><a href="downloads/threads-backup-v0.1.0.zip" download>下载 v0.1.0</a></div>
-<div class="tool"><span class="num">03</span><h3>微博</h3><p>微博与媒体内容。</p><span class="status">开发中</span></div>
-<div class="tool"><span class="num">04</span><h3>豆瓣</h3><p>动态与内容记录。</p><span class="status">开发中</span></div>
-<div class="tool"><span class="num">05</span><h3>知乎</h3><p>回答、文章与想法。</p><span class="status">开发中</span></div>
-<div class="tool"><span class="num">06</span><h3>小红书</h3><p>笔记、图片与视频。</p><span class="status">开发中</span></div>
+<div class="tool"><span class="num">01</span><h3>X</h3><p>备份自己的 X/Twitter 帖子、图片与可用视频，支持本地归档和 HTML / PDF / JSON 导出。</p><span class="status">v0.3.1</span></div>
+<div class="tool"><span class="num">02</span><h3>Threads</h3><p>备份自己的 Threads 帖子与媒体，支持离线 HTML、PDF、JSON 和大账号分块归档。</p><span class="status">v0.3.2</span></div>
+<div class="tool"><span class="num">03</span><h3>微博</h3><p>备份自己的微博正文、转发关系、图片和可用视频，支持 HTML / PDF / JSON / CSV。</p><span class="status">v0.2.1</span></div>
+<div class="tool"><span class="num">04</span><h3>豆瓣</h3><p>备份自己的广播、日记、评论、相册与书影音记录，支持本地长期归档。</p><span class="status">v0.3.1</span></div>
+<div class="tool"><span class="num">05</span><h3>知乎</h3><p>备份自己的回答、文章、想法与媒体信息，支持 HTML / PDF / JSON 和离线归档。</p><span class="status">v0.1.1</span></div>
+<div class="tool"><span class="num">06</span><h3>小红书</h3><p>备份自己的笔记、封面、时间和链接，支持 HTML / PDF / JSON / CSV 与离线归档。</p><span class="status">v0.1.2</span></div>
 </div></section>
 </main><footer><span>社媒坟场 · 2026</span><span>自己的账号，自己的档案。</span></footer>
 </div><script>
 const $=x=>document.getElementById(x);
 function update(){const p=$("platform").value,u=$("username").value.trim()||"@username",n=$("displayName").value.trim()||"昵称",d=$("startDate").value,s=$("graveStatus").value,e=$("epitaph").value.trim(),a=$("avatarUrl").value.trim();$("pvName").textContent=n;$("pvHandle").textContent=(u[0]=="@"?u:"@"+u)+" · "+p;$("pvDates").textContent=d?d.replace("-",".")+" — 2026":"—";$("pvStatus").textContent=s;$("pvEpitaph").textContent=e?"“"+e+"”":"";$("pvAvatar").replaceChildren();if(a){const i=new Image;i.src=a;i.alt="";$("pvAvatar").appendChild(i)}else $("pvAvatar").textContent="○"}
-$("previewBtn").onclick=update;["platform","username","displayName","startDate","graveStatus","epitaph"].forEach(x=>$(x).addEventListener("input",update));
+function prefillFromPlugin(){const raw=location.hash.startsWith("#create?")?location.hash.slice(8):"";if(!raw)return;const q=new URLSearchParams(raw);if(q.get("source")!=="plugin")return;const map={platform:"platform",username:"username",displayName:"displayName",startDate:"startDate"};for(const [key,id] of Object.entries(map)){const v=q.get(key);if(!v)continue;const el=$(id);if(el.tagName==="SELECT"){const opt=[...el.options].find(o=>o.value===v||o.textContent===v);if(opt)el.value=opt.value}else el.value=v}const count=q.get("archiveCount"),last=q.get("lastBackupDate"),note=$("pluginImportNote");note.textContent="已从备份插件在本地预填账号资料"+(count?" · 已备份 "+count+" 条":"")+(last?" · 最后备份 "+last:"")+"。这些预填字段没有随网页请求上传；这里仍只是预览，公开前还会再次确认。";update();document.getElementById("create").scrollIntoView({block:"start"})}
+$("previewBtn").onclick=update;["platform","username","displayName","startDate","graveStatus","epitaph","avatarUrl"].forEach(x=>$(x).addEventListener("input",update));prefillFromPlugin();
 </script></body></html>
